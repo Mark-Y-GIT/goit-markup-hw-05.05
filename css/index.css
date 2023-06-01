@@ -257,32 +257,47 @@
 
 .modal-overlay {
   position: fixed;
-
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100%;
 
-  /* opacity: 0;
-  pointer-events: none; */
-
   background-color: rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.is-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .modal-window {
   position: absolute;
+
   top: 50%;
   left: 50%;
 
+  transform: translate(-50%, -50%) scale(1);
+
   width: 530px;
   height: 580px;
-
-  transform: translate(-50%, -50%);
 
   background: var(--dark-bg-text-color);
   border-radius: 4px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+
+  transition: transform 250ms;
+}
+
+.modal-overlay.is-hidden .modal-window {
+  transform: translate(-50%, -50%) scale(0.5);
 }
 
 .btn-close {
@@ -301,7 +316,4 @@
 
 .btn-close:hover .icon {
   fill: var(--dark-bg-text-color);
-}
-
-.is-hidden {
 }
